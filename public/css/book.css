@@ -1,0 +1,54 @@
+body {font-family: Gen Jyuu GothicX Medium,Arial;}
+
+input[type=text], select, textarea {
+   
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+
+float: right;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+a{
+float:right;
+padding-top:0px;
+}
+
+input[type=reset] {
+
+float: right;
+    background-color: #b3d9ff;
+    color: white;
+    padding: 12px 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type=reset]:hover {
+    background-color: #0066cc;
+}
+
+.container {
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    padding: 30px;
+    width:600px;
+    height: 580px;
+}
