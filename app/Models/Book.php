@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\QueryException;
 
 class Book extends Model
 {
@@ -12,15 +13,14 @@ class Book extends Model
     protected $table = 'book';
     protected $primaryKey = 'book_id';
     public $incrementing = false;
-    // public $timestamps = true;
 
     public static function insertBook($request) 
     {
         try {
-            $bookid = $request->input('book_id');
-            $book_id = Book::find($bookid);
+            $book_id = $request->input('book_id');
+            $book = Book::find($book_id);
             $publication_day = $request->input('year') . '-' . $request->input('month') . '-' . $request->input('day');
-            if (!$book_id) {
+            if (empty($book)) {
                 $successed = Book::insert([
                     'book_id' => $request->input('book_id'),
                     'book_title' => $request->input('book_title'),
@@ -30,28 +30,29 @@ class Book extends Model
                 ]);
             }
             return $successed;
-        } catch (ModelNotFoundException $e) {
-            return $e->getMessage();
+        } catch (QueryException $e) {
+            return "error_system";
         }
     }
 
     public static function editBookById($request) 
     {
         try {
-            $bookid = $request->input('book_id');
-            $book = Book::find($bookid);
+            $book_id = $request->input('book_id');
+            $book = Book::find($book_id);
             $publication_day = $request->input('year') . '-' . $request->input('month') . '-' . $request->input('day');
             if ($book) {
-                $book->book_id = $request->input('book_id');
                 $book->book_title = $request->input('book_title');
                 $book->author_name = $request->input('author_name');
                 $book->publisher = $request->input('publisher');
                 $book->publication_day = $publication_day;
                 $book->save();
                 return true;
+            } else {
+                return false;
             }
-        } catch (ModelNotFoundException $e) {
-            return $e->getMessage();
+        } catch (QueryException $e) {
+            return "error_system";
         }
     }
 
@@ -61,9 +62,11 @@ class Book extends Model
             $book = Book::find($bookid);
             if ($book) {
                 return $book;
+            } else {
+                return false;
             }
-        } catch (ModelNotFoundException $e) {
-            return $e->getMessage();
+        } catch (QueryException $e) {
+            return "error_system";
         }
     }
 
@@ -74,9 +77,11 @@ class Book extends Model
             if ($book) {
                 $book->delete();
                 return true;
+            } else {
+                return false;
             }
-        } catch (ModelNotFoundException $e) {
-            return $e->getMessage();
+        } catch (QueryException $e) {
+            return "error_system";
         }
     }
 }

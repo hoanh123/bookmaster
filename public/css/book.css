@@ -1,7 +1,6 @@
 body {font-family: Gen Jyuu GothicX Medium,Arial;}
 
 input[type=text], select, textarea {
-   
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px; 
@@ -11,11 +10,11 @@ input[type=text], select, textarea {
 }
 
 input[type=submit] {
-
-float: right;
+    float: right;
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
+    margin-right: 10px;
     border: none;
     border-radius: 2px;
     cursor: pointer;
@@ -25,14 +24,13 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-a{
-float:right;
-padding-top:0px;
+a {
+    float:right;
+    padding-top:0px;
 }
 
 input[type=reset] {
-
-float: right;
+    float: right;
     background-color: #b3d9ff;
     color: white;
     padding: 12px 12px;
@@ -50,5 +48,9 @@ input[type=reset]:hover {
     background-color: #f2f2f2;
     padding: 30px;
     width:600px;
-    height: 580px;
+    height: 700px;
+}
+
+.help-block {
+    color: rgb(255,0,0);
 }
