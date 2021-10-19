@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\Auth\LoginController;
+use App\Http\Controllers\User\Auth\LogoutController;
+use App\Http\Controllers\User\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +19,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::post('/book', [\App\Http\Controllers\BookController::class, 'index']);
-Route::get('/book', [\App\Http\Controllers\BookController::class, 'home']);
+Route::match(['get', 'post'], '/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('login');
+Route::middleware('auth')->group(function (){
+    Route::post('/book', [\App\Http\Controllers\BookController::class, 'index']);
+    Route::get('/book', [\App\Http\Controllers\BookController::class, 'home'])->name('home');
+});

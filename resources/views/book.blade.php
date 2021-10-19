@@ -1,6 +1,6 @@
 <form action="/book" method="POST">
 @csrf
-<a href="#">Close</a>
+<a href="/logout">Close</a>
 @if (isset($message) || isset($error_system))
     <span class = "help-block">{{ isset($message) ? $message : $error_system}}</span><br>
 @endif
