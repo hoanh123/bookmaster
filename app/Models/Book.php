@@ -14,6 +14,10 @@ class Book extends Model
     protected $primaryKey = 'book_id';
     public $incrementing = false;
 
+    protected $fillable = [
+        'book_id', 'book_title', 'author_name', 'publisher', 'publication_day'
+    ];
+
     public static function insertBook($request) 
     {
         try {
